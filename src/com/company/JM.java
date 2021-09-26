@@ -16,11 +16,7 @@ public class JM {
         int[] numbers = s1.check(calc);
         Calculator cl = new Calculator();
         int result = cl.calculate(numbers[0], numbers[1], operator);
-        if (result > 0) {
             String result3 = s1.IfRome(result);
-        } else {
-            System.out.println("Неверно введено значение");
-        }
 
     }
 }
@@ -73,6 +69,7 @@ class Str {
                     throw new IOException();
                 } catch (IOException e) {
                     System.out.println("Неверно введено значение");
+                    System.exit(1);
                 }
             }
         }
@@ -104,7 +101,7 @@ class Str {
         } else if (rome.equals("X")) {
             return 10;
         } else {
-            return -1;
+            return Integer.parseInt(null);
 
         }
     }
@@ -112,15 +109,30 @@ class Str {
     String numToRome(int result) {
         int a, b = 0;
         String aa, bb;
-        if (result > 10) {
+        if ((result > 10) && (result < 99)) {
             a = result / 10;
             b = result % 10;
             if (a == 1) {
                 aa = "X";
             } else if (a == 2) {
                 aa = "XX";
-            } else {
-                aa = "0";
+            } else if (a == 3) {
+                aa = "XXX";
+            } else if (a == 4) {
+                aa = "XL";
+            } else if (a == 5) {
+                aa = "L";
+            } else if (a == 6) {
+                aa = "LX";
+            } else if (a == 7) {
+                aa = "LXX";
+            } else if (a == 8) {
+                aa = "LXXX";
+            } else if (a == 9) {
+                aa = "XC";
+            }
+            else {
+                aa = " ";
             }
             if (b == 0) {
                 bb = " ";
@@ -145,9 +157,12 @@ class Str {
             } else if (b == 10) {
                 bb = "X";
             } else {
-                bb = "0";
+                bb = " ";
             }
             String resultAr = (aa + bb);
+            return resultAr;
+        } else if (result == 100) {
+            String resultAr = ("C");
             return resultAr;
         } else {
             a = result;
@@ -172,7 +187,7 @@ class Str {
             } else if (a == 10) {
                 aa = "X";
             } else {
-                aa = "0";
+                aa = " ";
             }
             String resultAr = (aa);
             return resultAr;
@@ -198,15 +213,6 @@ class Str {
  class Calculator {
     int calculate(int a, int b, char operator) throws IOException {
         int result = 0;
-        if ((a > 10 || a < 0) || (b > 10 || b < 0)) {
-            try {
-                throw new IOException();
-            } catch (IOException e) {
-                System.out.println("Неверно введено значение");
-            }
-        }
-        else {
-
             switch (operator) {
                 case '+':
                     result = a + b;
@@ -225,14 +231,14 @@ class Str {
                         throw new IOException();
                     } catch (IOException e) {
                         System.out.println("Неверно введено значение");
+                        System.exit(1);
                     }
             }
-        }
             return result;
-
+        }
 
     }
-}
+
 
 
 
